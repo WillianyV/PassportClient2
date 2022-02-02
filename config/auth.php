@@ -107,5 +107,20 @@ return [
     */
 
     'password_timeout' => 10800,
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Laravel Passport
+    |--------------------------------------------------------------------------
+    |
+    | Aqui estará as definições de id, senha e URL's 
+    | Para que este sistema possa se conectar com a API
+    |
+    */
+
+    'client_id' => env('CLIENT_ID'),
+    'client_secret' => env('CLIENT_SECRET'),
+    'redirect_uri' => env('REDIRECT_URI'),
+    'app_url' => env('APP_URL'),
 
 ];
