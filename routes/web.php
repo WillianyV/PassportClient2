@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false, 'reset' => false]);
 
-Route::get("/sso/redirect", [SSOController::class, 'redirect'])->name("sso.redirect");
-Route::get("/callback", [SSOController::class, 'callback'])->name("sso.callback");
-Route::get("/sso/connect", [SSOController::class, 'connect'])->name("sso.connect");
+Route::get("/sso/redirect", 'App\Http\Controllers\SSO\SSOController@redirect')->name("sso.redirect");
+Route::get("/callback", 'App\Http\Controllers\SSO\SSOController@callback')->name("sso.callback");
+Route::get("/sso/connect", 'App\Http\Controllers\SSO\SSOController@connect')->name("sso.connect");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
