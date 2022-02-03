@@ -66,12 +66,12 @@ class SSOController extends Controller
 
         $user = User::where("email", $email)->first();
 
-        if (!$user) {
-            $user = User::create([
-                'name'  => $user_array['name'],
-                'email' => $user_array['email'],
-            ]);
-        }
+        // if (!$user) {
+        //     $user = User::create([
+        //         'name'  => $user_array['name'],
+        //         'email' => $user_array['email'],
+        //     ]);
+        // }
 
         Auth::login($user);
 

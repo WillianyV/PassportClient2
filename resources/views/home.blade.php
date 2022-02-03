@@ -15,6 +15,13 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @foreach ($companies as $company)
+                        <p>
+                            CNPJ: {{ $company->cnpj }}, EMPRESA: {{ $company->fantasy_name }} <br>
+                            ENDEREÇO: {{ $company->address->address }}, nº {{ $company->address->number }}
+                        </p>
+                    @endforeach
                 </div>
             </div>
         </div>
