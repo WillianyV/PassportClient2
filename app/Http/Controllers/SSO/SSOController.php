@@ -13,7 +13,12 @@ class SSOController extends Controller
 {
     public function redirect(Request $request)
     {
-        $request->session()->put('state', $state = Str::random(40));
+        // $request->session()->put('state', $state = Str::random(40));
+
+        $state = Str::random(40);
+        session([
+            'state' => $state
+        ]);
 
         $query = http_build_query([
             'client_id' => config('auth.client_id'),
@@ -28,12 +33,12 @@ class SSOController extends Controller
 
     public function callback(Request $request)
     {
-        $state = $request->session()->pull('state');
+        // $state = $request->session()->pull('state');
 
-        throw_unless(
-            strlen($state) > 0 && $state === $request->state,
-            InvalidArgumentException::class
-        );
+        // throw_unless(
+        //     strlen($state) > 0 && $state === $request->state,
+        //     InvalidArgumentException::class
+        // );
     
         $response = Http::asForm()->post(config('auth.app_url').'oauth/token', [
             'grant_type' => 'authorization_code',
@@ -65,16 +70,10 @@ class SSOController extends Controller
         }
 
         $user = User::where("email", $email)->first();
-
-        // if (!$user) {
-        //     $user = User::create([
-        //         'name'  => $user_array['name'],
-        //         'email' => $user_array['email'],
-        //     ]);
-        // }
-
+       
         Auth::login($user);
 
-        return redirect(route("home"));
+        // return redirect(route("home"));
+        return redirect(config('auth.app_url'));
     }
 }
